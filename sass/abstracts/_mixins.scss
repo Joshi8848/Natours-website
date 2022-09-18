@@ -1,0 +1,72 @@
+@mixin primaryBtn {
+  display: inline-block;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  transition: all 0.3s;
+  border-radius: 10rem;
+  position: relative;
+  font-size: $default-font-size;
+
+  // Change the <button> element
+  border: none;
+  cursor: pointer;
+}
+
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Media Query Manager
+/*
+0 - 600px: Phone
+600 - 900px: Tablet portrait
+900 - 1200px: Tablet landscape
+[1200 - 1800px] normal styles apply here
+1800+: Big dekstop
+
+$breakpoint arguement choices: 
+- phone
+- tab-portrait
+- tab-landscape
+- big-dekstop
+*/
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      // 600px
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-portrait {
+    @media only screen and (max-width: 56.25em) {
+      // 900px
+      @content;
+    }
+  }
+  @if $breakpoint == tab-landscape {
+    @media only screen and (max-width: 75em) {
+      // 1200px
+      @content;
+    }
+  }
+  @if $breakpoint == big-dekstop {
+    @media only screen and (max-width: 112.5em) {
+      // 1800px
+      @content;
+    }
+  }
+}
